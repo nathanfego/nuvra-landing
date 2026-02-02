@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - NUVRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --laranja: #D97532;
+            --azul: #0A1F44;
+            --branco: #FFFFFF;
+            --preto: #1A1A1A;
+            --cinza-claro: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--preto);
+            background: var(--cinza-claro);
+            padding: 40px 20px;
+        }
+
+        .checkout-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.6s forwards;
+        }
+
+        .checkout-header h1 {
+            font-size: 36px;
+            color: var(--azul);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .checkout-header p {
+            font-size: 18px;
+            color: var(--preto);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* BLOCOS */
+        .checkout-block {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.5s forwards;
+        }
+
+        .checkout-block:nth-child(1) { animation-delay: 0.2s; }
+        .checkout-block:nth-child(2) { animation-delay: 0.4s; }
+        .checkout-block:nth-child(3) { animation-delay: 0.6s; }
+        .checkout-block:nth-child(4) { animation-delay: 0.8s; }
+        .checkout-block:nth-child(5) { animation-delay: 1s; }
+        .checkout-block:nth-child(6) { animation-delay: 1.2s; }
+        .checkout-block:nth-child(7) { animation-delay: 1.4s; }
+
+        .block-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--azul);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .block-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--laranja);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .block-content ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .block-content ul li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .block-content ul li:before {
+            content: "✓";
+            color: var(--laranja);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        .block-content ul.cross-list li:before {
+            content: "✗";
+        }
+
+        .block-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--preto);
+        }
+
+        /* PREÇO */
+        .price-block {
+            background: linear-gradient(135deg, var(--azul) 0%, #0d2a5c 100%);
+            color: var(--branco);
+            text-align: center;
+            border: 3px solid var(--laranja);
+        }
+
+        .price-label {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--branco);
+        }
+
+        .price-details {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 16px;
+        }
+
+        .price-details p {
+            margin: 4px 0;
+            color: var(--branco);
+        }
+
+        /* GARANTIA */
+        .guarantee-block {
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--branco) 100%);
+            border-left: 4px solid var(--laranja);
+        }
+
+        /* CTA BUTTON */
+        .cta-container {
+            text-align: center;
+            margin: 48px 0;
+            opacity: 0;
+            animation: fadeIn 0.6s forwards;
+            animation-delay: 1.6s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--laranja);
+            color: var(--branco);
+            padding: 20px 60px;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(217, 117, 50, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(217, 117, 50, 0.4);
+        }
+
+        /* APÓS PAGAMENTO */
+        .steps-list {
+            background: var(--cinza-claro);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .steps-list li {
+            padding: 16px 0;
+            font-weight: 500;
+        }
+
+        /* AVISO FINAL */
+        .final-notice {
+            background: var(--azul);
+            color: var(--branco);
+            text-align: center;
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 32px;
+            opacity: 0;
+            animation: fadeIn 0.6s forwards;
+            animation-delay: 1.8s;
+        }
+
+        .final-notice p {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.7;
+            color: var(--branco);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* EXPANDABLE SECTIONS */
+        .expandable {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .expandable:hover {
+            transform: translateX(4px);
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .expandable-content.active {
+            max-height: 1000px;
+            transition: max-height 0.6s ease-in;
+        }
+
+        .expand-icon {
+            float: right;
+            transition: transform 0.3s;
+            font-size: 20px;
+            color: var(--laranja);
+        }
+
+        .expand-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .checkout-header h1 {
+                font-size: 28px;
+            }
+
+            .checkout-header p {
+                font-size: 16px;
+            }
+
+            .checkout-block {
+                padding: 28px;
+            }
+
+            .block-title {
+                font-size: 20px;
+            }
+
+            .price-value {
+                font-size: 42px;
+            }
+
+            .cta-button {
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+        }
+
+        /* SCROLL PROGRESS */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--laranja);
+            z-index: 1000;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="checkout-container">
+        <!-- HEADER -->
+        <div class="checkout-header">
+            <h1>Acesso à Nuvra — Funil Simples para Vender</h1>
+            <p>Você está a um passo de ter um funil organizado, simples e executável — sem travar no marketing.</p>
+        </div>
+
+        <!-- BLOCO 1: O QUE ESTÁ INCLUÍDO -->
+        <div class="checkout-block">
+            <h2 class="block-title">
+                <span class="block-icon">✓</span>
+                O que está incluído no acesso à Nuvra
+            </h2>
+            <div class="block-content">
+                <ul>
+                    <li>Funil guiado em 3 etapas (Captura, Aquecimento e Oferta)</li>
+                    <li>Textos prontos para iniciar conversas</li>
+                    <li>Sequências de WhatsApp para leads frios, mornos e follow-up</li>
+                    <li>Estrutura adaptável para afiliados ou produtos próprios</li>
+                    <li>Área do cliente organizada no Notion</li>
+                    <li>Acesso imediato após o pagamento</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BLOCO 2: PARA QUEM É -->
+        <div class="checkout-block">
+            <h2 class="block-title">
+                <span class="block-icon">👤</span>
+                Para quem é este acesso
+            </h2>
+            <div class="block-content">
+                <p style="margin-bottom: 16px;">A Nuvra é ideal para você se:</p>
+                <ul>
+                    <li>Quer começar a vender sem aprender marketing complexo</li>
+                    <li>Já tentou outros métodos e travou</li>
+                    <li>É afiliado ou tem produto próprio</li>
+                    <li>Quer um caminho claro do zero até a oferta</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BLOCO 3: IMPORTANTE DEIXAR CLARO -->
+        <div class="checkout-block">
+            <h2 class="block-title">
+                <span class="block-icon">!</span>
+                Importante deixar claro
+            </h2>
+            <div class="block-content">
+                <p style="margin-bottom: 16px; font-weight: 600;">A Nuvra:</p>
+                <ul class="cross-list">
+                    <li>Não promete dinheiro fácil</li>
+                    <li>Não é automação mágica</li>
+                    <li>Não faz o trabalho por você</li>
+                </ul>
+                <p style="margin-top: 24px; font-weight: 600; color: var(--azul);">
+                    Ela entrega estrutura + clareza + execução simples.<br>
+                    O resultado depende da aplicação.
+                </p>
+            </div>
+        </div>
+
+        <!-- BLOCO 4: PREÇO -->
+        <div class="checkout-block price-block">
+            <p class="price-label">💳 Investimento</p>
+            <div class="price-value">R$ 27,49</div>
+            <div class="price-details">
+                <p>✓ Sem mensalidade</p>
+                <p>✓ Sem taxas escondidas</p>
+                <p>✓ Sem pegadinhas</p>
+                <p style="margin-top: 16px; font-size: 16px;">Acesso imediato após a confirmação do pagamento.</p>
+            </div>
+        </div>
+
+        <!-- BLOCO 5: GARANTIA -->
+        <div class="checkout-block guarantee-block">
+            <h2 class="block-title">
+                <span class="block-icon">🔒</span>
+                Garantia incondicional de 7 dias
+            </h2>
+            <div class="block-content">
+                <p>Se dentro de 7 dias você sentir que a Nuvra não faz sentido para você, é só solicitar o reembolso.</p>
+                <p style="margin-top: 12px; font-weight: 600; color: var(--azul);">Simples assim.</p>
+            </div>
+        </div>
+
+        <!-- CTA PRINCIPAL -->
+        <div class="cta-container">
+            <a href="#pagamento" class="cta-button">👉 Quero acessar a Nuvra agora</a>
+        </div>
+
+        <!-- BLOCO 6: APÓS O PAGAMENTO -->
+        <div class="checkout-block">
+            <h2 class="block-title">
+                <span class="block-icon">📋</span>
+                O que acontece após o pagamento
+            </h2>
+            <div class="block-content">
+                <p style="margin-bottom: 16px; font-weight: 600;">Após a confirmação:</p>
+                <div class="steps-list">
+                    <ul>
+                        <li>1. Você recebe o acesso à área da Nuvra</li>
+                        <li>2. Começa pela Página 1 — Funil Guiado</li>
+                        <li>3. Executa no seu ritmo, sem pressão</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 16px; font-weight: 600; color: var(--azul);">
+                    Nada de excesso de informação. Nada de confusão.
+                </p>
+            </div>
+        </div>
+
+        <!-- AVISO FINAL -->
+        <div class="final-notice">
+            <p>A Nuvra não é para quem busca atalhos.</p>
+            <p style="margin-top: 12px;">É para quem quer parar de travar e começar a executar.</p>
+        </div>
+    </div>
+
+    <script>
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Optional: Add intersection observer for more dynamic animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.checkout-block').forEach(block => {
+            observer.observe(block);
+        });
+    </script>
+</body>
+</html>
