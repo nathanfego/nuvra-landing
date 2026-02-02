@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUVRA - Funil Simples para Vender</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --laranja: #D97532;
+            --azul: #0A1F44;
+            --branco: #FFFFFF;
+            --preto: #1A1A1A;
+            --cinza-claro: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--preto);
+            background: var(--branco);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: var(--azul);
+            color: var(--branco);
+            text-align: center;
+            padding: 120px 0 160px 0;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--branco);
+            clip-path: ellipse(60% 100% at 50% 100%);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--laranja);
+            color: var(--branco);
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(217, 117, 50, 0.3);
+        }
+
+        /* PROBLEMA SECTION */
+        .problema {
+            background: var(--cinza-claro);
+            position: relative;
+            margin-top: -40px;
+        }
+
+        .problema .container {
+            background: var(--branco);
+            padding: 60px 48px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--azul);
+        }
+
+        .section-text {
+            font-size: 20px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .bullets {
+            list-style: none;
+            max-width: 700px;
+        }
+
+        .bullets li {
+            font-size: 18px;
+            padding: 16px 0;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .bullets li:before {
+            content: "•";
+            color: var(--laranja);
+            font-size: 28px;
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        /* VIRADA SECTION */
+        .virada {
+            text-align: center;
+            background: var(--branco);
+        }
+
+        .virada .section-title {
+            margin-bottom: 16px;
+        }
+
+        .virada .section-text {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 22px;
+            color: var(--preto);
+        }
+
+        /* O QUE É SECTION */
+        .oque-e {
+            background: var(--cinza-claro);
+        }
+
+        /* COMO FUNCIONA */
+        .como-funciona {
+            background: var(--branco);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 32px;
+            background: var(--cinza-claro);
+            border-radius: 12px;
+            border-top: 4px solid var(--laranja);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: var(--azul);
+            color: var(--branco);
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 48px;
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            font-size: 24px;
+            color: var(--azul);
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            font-size: 16px;
+            color: var(--preto);
+        }
+
+        .tagline {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--azul);
+        }
+
+        /* O QUE RECEBE */
+        .recebe {
+            background: var(--azul);
+            color: var(--branco);
+        }
+
+        .recebe .section-title {
+            color: var(--branco);
+        }
+
+        .recebe .bullets li {
+            color: var(--branco);
+        }
+
+        /* PARA QUEM */
+        .para-quem {
+            background: var(--cinza-claro);
+        }
+
+        /* O QUE NÃO É */
+        .nao-e {
+            background: var(--branco);
+        }
+
+        .nao-e .section-text {
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .final-note {
+            margin-top: 32px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--azul);
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: var(--laranja);
+            color: var(--branco);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-final p {
+            font-size: 28px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 100px 0 140px 0;
+            }
+
+            .hero::after {
+                height: 60px;
+            }
+
+            .problema .container {
+                padding: 40px 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-text {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-final p {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SEÇÃO 1: HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Um funil simples para vender sem travar no marketing digital</h1>
+            <p>A Nuvra organiza o essencial para afiliados e produtos próprios executarem sem complicação.</p>
+            <a href="#como-funciona" class="cta-button">Ver como funciona</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg fill="white" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: O PROBLEMA -->
+    <section class="section problema">
+        <div class="container">
+            <h2 class="section-title">O problema não é falta de esforço</h2>
+            <p class="section-text">A maioria das pessoas trava porque tenta usar ferramentas demais, métodos avançados demais e acaba não executando nada.</p>
+            <ul class="bullets">
+                <li>Informação demais</li>
+                <li>Plataformas complexas</li>
+                <li>Falta de clareza do que fazer primeiro</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: A VIRADA -->
+    <section class="section virada">
+        <div class="container">
+            <h2 class="section-title">O simples quase ninguém faz</h2>
+            <p class="section-text">Não é sobre aprender tudo. É sobre executar o básico do jeito certo.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: O QUE É A NUVRA -->
+    <section class="section oque-e">
+        <div class="container">
+            <h2 class="section-title">O que é a Nuvra?</h2>
+            <p class="section-text">A Nuvra é um funil guiado de vendas com textos, sequências e estrutura prontos para afiliados e produtos próprios.</p>
+            <p class="section-text" style="font-weight: 600; color: var(--azul); margin-bottom: 32px;">Criada para quem quer vender sem depender de fórmulas milagrosas ou promessas vazias.</p>
+            <ul class="bullets">
+                <li>Funil em 3 etapas</li>
+                <li>Mensagens prontas</li>
+                <li>Organização clara</li>
+                <li>Execução prática</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: COMO FUNCIONA -->
+    <section id="como-funciona" class="section como-funciona">
+        <div class="container">
+            <h2 class="section-title">Como funciona na prática</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Captura</h3>
+                    <p>A pessoa entra em contato</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Aquecimento</h3>
+                    <p>Você conduz a conversa</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Oferta</h3>
+                    <p>Você apresenta a solução</p>
+                </div>
+            </div>
+            <p class="tagline">Simples. Direto. Executável.</p>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="nuvra-checkout.html" class="cta-button">Quero acessar a Nuvra</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: O QUE VOCÊ RECEBE -->
+    <section class="section recebe">
+        <div class="container">
+            <h2 class="section-title">O que você recebe ao acessar a Nuvra</h2>
+            <ul class="bullets">
+                <li>Funil guiado completo</li>
+                <li>Textos prontos de captura</li>
+                <li>Sequências de WhatsApp</li>
+                <li>Área do cliente organizada no Notion</li>
+                <li>Estrutura adaptável para afiliado ou produto próprio</li>
+            </ul>
+            <p class="section-text" style="margin-top: 40px; font-size: 18px; opacity: 0.95;">Se você fosse montar isso do zero, precisaria aprender copy, funil, WhatsApp e estrutura. A Nuvra elimina esse caminho confuso.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: PARA QUEM É -->
+    <section class="section para-quem">
+        <div class="container">
+            <h2 class="section-title">A Nuvra é para você se:</h2>
+            <ul class="bullets">
+                <li>Quer vender como afiliado</li>
+                <li>Tem produto próprio</li>
+                <li>Trava com marketing</li>
+                <li>Quer algo simples e funcional</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: O QUE NÃO É -->
+    <section class="section nao-e">
+        <div class="container">
+            <h2 class="section-title">Importante deixar claro</h2>
+            <ul class="bullets">
+                <li>Não é promessa de dinheiro fácil</li>
+                <li>Não é automação mágica</li>
+                <li>Não faz o trabalho por você</li>
+            </ul>
+            <p class="final-note">É estrutura + execução.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <p>Se você quer um caminho claro para começar sem travar, a Nuvra é pra você.</p>
+            <a href="nuvra-checkout.html" class="cta-button">Quero parar de travar e executar</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll para os botões CTA
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Aqui você deve substituir o href="#checkout" pelos links reais do seu checkout
+        // Exemplo: href="https://seu-checkout.com/nuvra"
+    </script>
+
+</body>
+</html>
