@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pare de Travar no Marketing</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+--laranja:#D97532;
+--azul:#0A1F44;
+--branco:#FFFFFF;
+--preto:#1A1A1A;
+--cinza:#F5F5F5;
+}
+
+body{
+font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+background:var(--branco);
+color:var(--preto);
+line-height:1.6;
+}
+
+.container{
+max-width:1000px;
+margin:0 auto;
+padding:0 24px;
+}
+
+.section{
+padding:100px 0;
+}
+
+.hero{
+background:var(--azul);
+color:var(--branco);
+text-align:center;
+padding:140px 0;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:24px;
+line-height:1.2;
+}
+
+.hero p{
+font-size:20px;
+opacity:0.9;
+margin-bottom:40px;
+}
+
+.cta{
+display:inline-block;
+background:var(--laranja);
+color:var(--branco);
+padding:18px 50px;
+font-size:18px;
+font-weight:600;
+border-radius:8px;
+text-decoration:none;
+transition:0.2s;
+}
+
+.cta:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+.problema{
+background:var(--cinza);
+text-align:center;
+}
+
+h2{
+font-size:36px;
+margin-bottom:24px;
+color:var(--azul);
+}
+
+.text{
+font-size:18px;
+max-width:700px;
+margin:0 auto 24px auto;
+}
+
+ul{
+list-style:none;
+max-width:600px;
+margin:30px auto;
+}
+
+ul li{
+padding:12px 0;
+font-size:18px;
+}
+
+.virada{
+text-align:center;
+}
+
+.final{
+background:var(--laranja);
+color:var(--branco);
+text-align:center;
+padding:100px 0;
+}
+
+.final p{
+font-size:24px;
+margin-bottom:40px;
+}
+
+@media(max-width:768px){
+.hero h1{font-size:32px;}
+.section{padding:70px 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Pare de Travar no Marketing</h1>
+<p>Descubra o sistema mais simples para começar sem se perder em estratégias complexas.</p>
+<a href="SEU_LINK_WHATSAPP_AQUI" class="cta">Quero receber o guia gratuito</a>
+</div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section problema">
+<div class="container">
+<h2>O problema não é você</h2>
+<p class="text">
+A maioria trava porque tenta aprender tudo ao mesmo tempo.
+Ferramentas demais. Métodos demais. Informação demais.
+</p>
+
+<ul>
+<li>Excesso de estratégias</li>
+<li>Promessas irreais</li>
+<li>Falta de clareza sobre por onde começar</li>
+</ul>
+</div>
+</section>
+
+<!-- VIRADA -->
+<section class="section virada">
+<div class="container">
+<h2>O simples quase ninguém faz</h2>
+<p class="text">
+Você não precisa dominar marketing.
+Precisa executar um processo básico em ordem.
+</p>
+</div>
+</section>
+
+<!-- O QUE VAI APRENDER -->
+<section class="section problema">
+<div class="container">
+<h2>O que você vai encontrar no guia</h2>
+
+<ul>
+<li>Como organizar seu primeiro funil simples</li>
+<li>Como conduzir uma conversa de venda sem parecer vendedor</li>
+<li>Qual a ordem correta para começar</li>
+<li>Checklist prático de execução</li>
+</ul>
+</div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section virada">
+<div class="container">
+<h2>Para quem é esse material</h2>
+<p class="text">
+Para afiliados iniciantes ou quem tem produto próprio
+e quer parar de estudar demais e começar a executar.
+</p>
+</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+<div class="container">
+<p>Se você quer clareza antes de avançar, comece pelo simples.</p>
+<a href="SEU_LINK_WHATSAPP_AQUI" class="cta">Receber agora gratuitamente</a>
+</div>
+</section>
+
+</body>
+</html>
